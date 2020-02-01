@@ -22,6 +22,7 @@ public class TicTacToeRunner {
 // == vertical ==
         gameModel.addInputToGame(1,5,'x');
         gameModel.addInputToGame(2,5,'x');
+        gameModel.addInputToGame(15,14,'x');
 
 // == diagonal
         gameModel.addInputToGame(15,15,'x');

@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class ConsoleViewImpl implements View {
+
     @Override
     public void showField(char[][] gameGrid) {
 
@@ -77,7 +78,6 @@ public class ConsoleViewImpl implements View {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return s;
     }
 
@@ -89,7 +89,6 @@ public class ConsoleViewImpl implements View {
             return " " + String.valueOf(i);
         else
             return String.valueOf(i);
-
     }
 
 }
