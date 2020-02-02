@@ -1,21 +1,40 @@
-import Controller.TicTacToeController;
-import Controller.TicTacToeControllerImpl;
+import controller.TicTacToeController;
+import controller.TicTacToeControllerImpl;
 import model.GameModel;
-import model.GameModeTicTacToelImpl;
+import model.GameModeTicTacToeImpl;
 import view.ConsoleViewImpl;
 import view.View;
 
 public class TicTacToeRunner {
     public static void main(String[] args) {
-        GameModel gameModel = new GameModeTicTacToelImpl();
+        // == setting up MVC pattern ==
+        GameModel gameModel = new GameModeTicTacToeImpl();
         View view = new ConsoleViewImpl();
-
         TicTacToeController ticTacToeController = new TicTacToeControllerImpl(gameModel, view);
+
         ticTacToeController.configureGame();
 
-        // == start testing for grid 16 ==
+        // == start testing for grid 16 - uncomment method from below ==
+        //setUpPredefinedInputs(gameModel);
 
-// == horizontal UP ==
+        while (ticTacToeController.getGameStatus() == true){
+            ticTacToeController.displayGame();
+
+            ticTacToeController.runPlayerTurn();
+
+            ticTacToeController.changePlayers();
+        }
+
+        System.out.println();
+
+        ticTacToeController.displayGameStatusMessage();
+
+        ticTacToeController.displayGame();
+
+    }
+
+    private static void setUpPredefinedInputs(GameModel gameModel) {
+        // == horizontal UP ==
         gameModel.addInputToGame(0,0,'x');
         gameModel.addInputToGame(0,1,'x');
 
@@ -32,22 +51,6 @@ public class TicTacToeRunner {
         gameModel.addInputToGame(14,1,'x');
 
 
-
         // == stop testing ==
-
-        while (ticTacToeController.getGameStatus() == true){
-            ticTacToeController.displayGame();
-
-            ticTacToeController.runPlayerTurn();
-
-            ticTacToeController.changePlayers();
-        }
-
-        System.out.println();
-
-        ticTacToeController.displayGameStatusMessage();
-
-        ticTacToeController.displayGame();
-
     }
 }

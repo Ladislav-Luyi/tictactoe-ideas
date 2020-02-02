@@ -1,6 +1,5 @@
 package view;
 
-import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -69,7 +68,7 @@ public class ConsoleViewImpl implements View {
     }
 
     @Override
-    public String readInput() {
+    public String readPlayerInput() {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         String s = null;
 

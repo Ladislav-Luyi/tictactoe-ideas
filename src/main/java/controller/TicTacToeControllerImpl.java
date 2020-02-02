@@ -1,6 +1,5 @@
-package Controller;
+package controller;
 
-import model.GameModeTicTacToelImpl;
 import model.GameModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +17,7 @@ public class TicTacToeControllerImpl implements TicTacToeController {
 
     public void displayGame(){
 
-        view.showField( gameModel.getArray() );
+        view.showField( gameModel.getGrid() );
 //
 //        if (LOGGER.isDebugEnabled())
 //            view.showFieldDebug( gameModel.getArray() );
@@ -28,13 +27,13 @@ public class TicTacToeControllerImpl implements TicTacToeController {
     @Override
     public void runPlayerTurn() {
 
-        view.showMessage(gameModel.getCurrentPlayerMessage() + gameModel.getActivePlayer() + "\n");
+        view.showMessage(gameModel.getCurrentPlayerMessage());
         view.showMessage(gameModel.getMessageForInput());
 
         String s;
 
         while(true){
-            s = view.readInput();
+            s = view.readPlayerInput();
             if (gameModel.isInputForPlayerValid(s)){
                 break;
             }
@@ -44,7 +43,7 @@ public class TicTacToeControllerImpl implements TicTacToeController {
         char activePlayer = gameModel.getActivePlayer();
 
         gameModel.addInputToGame(s, activePlayer);
-        gameModel.procesInputs();
+        gameModel.processInputs();
 
     }
 
@@ -70,8 +69,8 @@ public class TicTacToeControllerImpl implements TicTacToeController {
 
         String s;
         while (true) {
-            s = view.readInput();
-            if (gameModel.configGridSizeIsValid(s)){
+            s = view.readPlayerInput();
+            if (gameModel.isConfigGridSizeValid(s)){
                 break;
             }
             view.showMessage(gameModel.getErrorMessage());
@@ -83,8 +82,8 @@ public class TicTacToeControllerImpl implements TicTacToeController {
         view.showMessage(gameModel.getWinningConditionMessage());
 
         while (true) {
-            s = view.readInput();
-            if (gameModel.winningConditionIsValid(s)){
+            s = view.readPlayerInput();
+            if (gameModel.isWinningConditionValid(s)){
                 break;
             }
 
