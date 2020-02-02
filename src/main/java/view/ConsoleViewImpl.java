@@ -6,6 +6,10 @@ import java.io.InputStreamReader;
 
 public class ConsoleViewImpl implements View {
 
+    /**
+     * Method for displaying play grid
+     * @param gameGrid
+     */
     @Override
     public void showField(char[][] gameGrid) {
 
@@ -51,6 +55,10 @@ public class ConsoleViewImpl implements View {
         System.out.println();
     }
 
+    /**
+     * Method for displaying play grid for debugging purposes; It shows numbers for lines and columns
+     * @param gameGrid
+     */
     @Override
     public void showFieldDebug(char[][] gameGrid) {
 
@@ -62,11 +70,19 @@ public class ConsoleViewImpl implements View {
         }
     }
 
+    /**
+     * Method for printing generic messages
+     * @param s
+     */
     @Override
     public void showMessage(String s) {
         System.out.print(s);
     }
 
+    /**
+     * Method for reading players input
+     * @return
+     */
     @Override
     public String readPlayerInput() {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));

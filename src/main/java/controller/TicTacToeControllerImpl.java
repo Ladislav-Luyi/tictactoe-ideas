@@ -23,7 +23,9 @@ public class TicTacToeControllerImpl implements TicTacToeController {
 //            view.showFieldDebug( gameModel.getArray() );
     }
 
-
+    /**
+     * Method encapsulates game logic for one turn in the game by reading input from player and processing it by calling appropriate controller and view methods
+     */
     @Override
     public void runPlayerTurn() {
 
@@ -48,6 +50,9 @@ public class TicTacToeControllerImpl implements TicTacToeController {
     }
 
 
+    /**
+     * Controller method for calling models method for changing players
+     */
     @Override
     public void changePlayers() {
         gameModel.changePlayers();
@@ -63,6 +68,9 @@ public class TicTacToeControllerImpl implements TicTacToeController {
         view.showMessage(gameModel.getGameStatusMessage());
     }
 
+    /**
+     * Method encapsulates game logic for configuring the game - grid size, winning conditions - by reading input from a player and processing it by calling appropriate controller and view methods
+     */
     @Override
     public void configureGame() {
         view.showMessage(gameModel.getConfigGridSizeMessage());

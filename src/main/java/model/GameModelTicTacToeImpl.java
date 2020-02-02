@@ -6,9 +6,9 @@ import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public final class GameModeTicTacToeImpl implements GameModel {
+public final class GameModelTicTacToeImpl implements GameModel {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(GameModeTicTacToeImpl.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(GameModelTicTacToeImpl.class);
     private char[][] grid;
     private int gridSize;
 
@@ -73,7 +73,7 @@ public final class GameModeTicTacToeImpl implements GameModel {
 
         grid = new char[gridSize][gridSize];
         for(char[] row : grid)
-            Arrays.fill(row,'■');
+            Arrays.fill(row, '\u25A0');
     }
 
     @Override
@@ -81,6 +81,11 @@ public final class GameModeTicTacToeImpl implements GameModel {
         this.winningCounter = winningCounter;
     }
 
+    /**
+     * Method for validating input for grid size
+     * @param s
+     * @return
+     */
     @Override
     public boolean isConfigGridSizeValid(String s) {
 
@@ -93,6 +98,11 @@ public final class GameModeTicTacToeImpl implements GameModel {
         return true;
     }
 
+    /**
+     * Method for validating condition for win. Number of consecutive tiles marked by player
+     * @param s
+     * @return
+     */
     @Override
     public boolean isWinningConditionValid(String s) {
         if (!isNumberValid(s)) return false;
@@ -109,6 +119,11 @@ public final class GameModeTicTacToeImpl implements GameModel {
         return true;
     }
 
+    /**
+     * Method for validating input from player. It validates whether it is a number, inputs format and inputs range
+     * @param s
+     * @return
+     */
     public boolean isInputForPlayerValid(String s) {
         int[] i = new int[2];
 
@@ -143,6 +158,9 @@ public final class GameModeTicTacToeImpl implements GameModel {
         return true;
     }
 
+    /**
+     * Method for manually changing the order for players
+     */
     @Override
     public void changePlayers() {
         if (ActivePlayer == 'x')
@@ -151,6 +169,11 @@ public final class GameModeTicTacToeImpl implements GameModel {
             ActivePlayer = 'x';
     }
 
+    /**
+     * Method takes input to the game. Which is then used as cross or circle in the game grid
+     * @param s
+     * @param sign
+     */
     @Override
     public void addInputToGame(String s, char sign) {
         int[] i = new int[2];
@@ -166,6 +189,9 @@ public final class GameModeTicTacToeImpl implements GameModel {
 
 
     @Override
+    /**
+     * Game main logic is validated. This method validates whether there is a winner or it is tie.
+     */
     public void processInputs() {
         outerloop:
         for(int i = 0; i < grid.length; i++){
@@ -191,6 +217,12 @@ public final class GameModeTicTacToeImpl implements GameModel {
     }
 
 
+    /**
+     * Method takes input to the game. Which is then used as cross or circle in the game grid. Only for debugging purposes!
+     * @param i row
+     * @param j column
+     * @param sign
+     */
     // == method for debugging purposses ==
     public void addInputToGame(int i, int j, char sign){
         grid[ i ] [ j ] = sign;
@@ -230,7 +262,30 @@ public final class GameModeTicTacToeImpl implements GameModel {
         return true;
     }
 
+    /**
+     * Method checks whether inputs from recursive calls in methods for checking horizontal, vertical and diagonals directions for match are in range
+     * @param i
+     * @return
+     */
+    private boolean validateInput(int i) {
+
+        if (i < 0 || i >= grid.length)
+            return false;
+
+        return true;
+    }
+
     // == main logic ===
+
+    /**
+     * Wrapper method for calling methods to check horizontal, vertical and diagonals directions for match
+     * @param i
+     * @param j
+     * @param sign
+     * @param counter
+     * @return
+     */
+
     private boolean checkAdjutedFields(int i, int j, char sign, int counter) {
         LOGGER.debug("Start of checking fields for: " + i + " " + j);
 
@@ -250,14 +305,6 @@ public final class GameModeTicTacToeImpl implements GameModel {
         if( checkAdjutedFieldRightDiagonal(i+1,j+1,sign,counter) ) return true;
 
         return false;
-    }
-
-    private boolean validateInput(int i) {
-
-        if (i < 0 || i >= grid.length)
-            return false;
-
-        return true;
     }
 
     // == down == i+1 j

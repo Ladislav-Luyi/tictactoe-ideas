@@ -1,6 +1,7 @@
 package model;
 
 public interface GameModel {
+
     void addInputToGame(String s, char sign);
     void addInputToGame(int i, int j, char sign);
     void processInputs();

@@ -1,14 +1,15 @@
 import controller.TicTacToeController;
 import controller.TicTacToeControllerImpl;
 import model.GameModel;
-import model.GameModeTicTacToeImpl;
+import model.GameModelTicTacToeImpl;
 import view.ConsoleViewImpl;
 import view.View;
+
 
 public class TicTacToeRunner {
     public static void main(String[] args) {
         // == setting up MVC pattern ==
-        GameModel gameModel = new GameModeTicTacToeImpl();
+        GameModel gameModel = new GameModelTicTacToeImpl();
         View view = new ConsoleViewImpl();
         TicTacToeController ticTacToeController = new TicTacToeControllerImpl(gameModel, view);
 
@@ -33,6 +34,10 @@ public class TicTacToeRunner {
 
     }
 
+    /**
+     * Method for debugging purposes to add predefined inputs before the game starts.
+     * @param gameModel
+     */
     private static void setUpPredefinedInputs(GameModel gameModel) {
         // == horizontal UP ==
         gameModel.addInputToGame(0,0,'x');
